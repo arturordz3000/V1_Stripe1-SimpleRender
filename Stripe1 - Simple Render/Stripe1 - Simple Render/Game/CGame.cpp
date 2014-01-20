@@ -1,15 +1,26 @@
 #include "../Game.h"
 
-CGame *Game			= NULL;
+CGame *Game	= NULL;
 CGraphics *Graphics	= NULL;
+CCamera *Camera	= NULL;
+CStateMachine *StateMachine = NULL;
 
 CGame::CGame()
 {
+	m_bIsRunning = false;
+
 	// Damos acceso global a esta instancia
 	Game = this;
 
 	// Inicializamos el módulo Graphics
 	m_pGraphics = new CGraphics();
+
+	// Inicializamos la cámara
+	m_pCamera = new CCamera();
+
+	// Inicializamos la máquina de estados
+	m_pStateMachine = new CStateMachine();
+	m_pStateMachine->Start();
 }
 
 CGame::~CGame()
@@ -18,8 +29,12 @@ CGame::~CGame()
 
 	Game = NULL;
 	Graphics = NULL;
+	Camera = NULL;
+	StateMachine = NULL;
 
 	delete m_pGraphics;
+	delete m_pCamera;
+	delete m_pStateMachine;
 }
 
 int CGame::Run()
@@ -27,7 +42,8 @@ int CGame::Run()
 	m_bIsRunning = true;
 
 	// Inicializamos la ventana
-	Graphics->InitWindow(600, 400, true);
+	if(!Graphics->InitWindow(600, 400, true))
+		m_bIsRunning = false;
 
 	// Loop principal
 	while (m_bIsRunning)
@@ -38,7 +54,7 @@ int CGame::Run()
 		// la aplicación
 		if (PeekMessage(&msg, NULL, NULL, NULL, PM_REMOVE))
 		{
-			// La aplicación debe cerrarse
+			// El usuario cerró la aplicación
 			if (msg.message == WM_QUIT)
 				break;
 
@@ -51,7 +67,7 @@ int CGame::Run()
 		}
 		else
 		{
-			// Haremos render con DirectX después
+			m_pStateMachine->DoFrame();
 		}
 	}
 

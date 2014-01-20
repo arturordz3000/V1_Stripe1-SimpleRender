@@ -25,6 +25,12 @@
     <Filter Include="Source Files\Graphics">
       <UniqueIdentifier>{a6848256-09dc-4434-97db-0464de1f336a}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\Stateh">
+      <UniqueIdentifier>{f76afdd6-1463-4400-a32a-a8b77f07f113}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\State">
+      <UniqueIdentifier>{1e2dac4b-2939-460b-a09b-86efe07d9356}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -39,6 +45,12 @@
     <ClCompile Include="Utils.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Graphics\CCamera.cpp">
+      <Filter>Source Files\Graphics</Filter>
+    </ClCompile>
+    <ClCompile Include="State\StateMachine.cpp">
+      <Filter>Source Files\State</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Gameh\CGame.h">
@@ -51,6 +63,18 @@
       <Filter>Header Files\Graphicsh</Filter>
     </ClInclude>
     <ClInclude Include="Graphics.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Structs.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Graphicsh\CCamera.h">
+      <Filter>Header Files\Graphicsh</Filter>
+    </ClInclude>
+    <ClInclude Include="Stateh\CStateMachine.h">
+      <Filter>Header Files\Stateh</Filter>
+    </ClInclude>
+    <ClInclude Include="State.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

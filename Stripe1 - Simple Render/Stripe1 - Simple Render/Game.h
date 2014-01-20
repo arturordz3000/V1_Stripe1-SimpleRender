@@ -2,12 +2,18 @@
 #define _GAME_H_
 
 #include <Windows.h>
+#include <iostream>
 #include <d3d11.h>
 #include <d3dx11.h>
+#include <xnamath.h>
 #include <d3dcompiler.h>
+
+#define _XM_NO_INTRINSICS_
 
 #include "Gameh/CGame.h"
 #include "Graphics.h"
+#include "State.h"
+#include "Structs.h"
 
 extern HINSTANCE g_hInstance;
 extern int g_nCmdShow;
