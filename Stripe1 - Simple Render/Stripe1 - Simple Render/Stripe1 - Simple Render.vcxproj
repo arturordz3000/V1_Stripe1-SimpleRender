@@ -77,21 +77,29 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="Game\CActor.cpp" />
+    <ClCompile Include="Game\CActorMgr.cpp" />
     <ClCompile Include="Game\CGame.cpp" />
     <ClCompile Include="Graphics\CCamera.cpp" />
     <ClCompile Include="Graphics\CGraphics.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="State\CState.cpp" />
+    <ClCompile Include="State\CStateMainGame.cpp" />
     <ClCompile Include="State\StateMachine.cpp" />
     <ClCompile Include="Utils.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Game.h" />
+    <ClInclude Include="Gameh\CActor.h" />
+    <ClInclude Include="Gameh\CActorMgr.h" />
     <ClInclude Include="Gameh\CGame.h" />
     <ClInclude Include="Graphics.h" />
     <ClInclude Include="Graphicsh\CCamera.h" />
     <ClInclude Include="Graphicsh\CGraphics.h" />
     <ClInclude Include="State.h" />
+    <ClInclude Include="Stateh\CState.h" />
     <ClInclude Include="Stateh\CStateMachine.h" />
+    <ClInclude Include="Stateh\CStateMainGame.h" />
     <ClInclude Include="Structs.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

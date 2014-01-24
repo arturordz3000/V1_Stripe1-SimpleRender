@@ -4,6 +4,7 @@ CGame *Game	= NULL;
 CGraphics *Graphics	= NULL;
 CCamera *Camera	= NULL;
 CStateMachine *StateMachine = NULL;
+CActorMgr *ActorMgr = NULL;
 
 CGame::CGame()
 {
@@ -21,6 +22,9 @@ CGame::CGame()
 	// Inicializamos la máquina de estados
 	m_pStateMachine = new CStateMachine();
 	m_pStateMachine->Start();
+
+	// Inicializamos el manejador de actores
+	m_pActorMgr = new CActorMgr();
 }
 
 CGame::~CGame()
@@ -31,10 +35,12 @@ CGame::~CGame()
 	Graphics = NULL;
 	Camera = NULL;
 	StateMachine = NULL;
+	ActorMgr = NULL;
 
 	delete m_pGraphics;
 	delete m_pCamera;
 	delete m_pStateMachine;
+	delete m_pActorMgr;
 }
 
 int CGame::Run()

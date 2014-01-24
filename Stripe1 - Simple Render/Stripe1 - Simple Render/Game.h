@@ -7,10 +7,13 @@
 #include <d3dx11.h>
 #include <xnamath.h>
 #include <d3dcompiler.h>
+#include <list>
 
 #define _XM_NO_INTRINSICS_
 
 #include "Gameh/CGame.h"
+#include "Gameh/CActor.h"
+#include "Gameh/CActorMgr.h"
 #include "Graphics.h"
 #include "State.h"
 #include "Structs.h"
