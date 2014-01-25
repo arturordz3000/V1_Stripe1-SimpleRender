@@ -69,10 +69,6 @@ void CActorPlane::OnLoad()
 		{ XMFLOAT3( 1.0f, 1.0f, -1.0f ), XMFLOAT4( 0.0f, 1.0f, 0.0f, 1.0f ) },
 		{ XMFLOAT3( 1.0f, 1.0f, 1.0f ), XMFLOAT4( 0.0f, 1.0f, 1.0f, 1.0f ) },
 		{ XMFLOAT3( -1.0f, 1.0f, 1.0f ), XMFLOAT4( 1.0f, 0.0f, 0.0f, 1.0f ) },
-		{ XMFLOAT3( -1.0f, -1.0f, -1.0f ), XMFLOAT4( 1.0f, 0.0f, 1.0f, 1.0f ) },
-		{ XMFLOAT3( 1.0f, -1.0f, -1.0f ), XMFLOAT4( 1.0f, 1.0f, 0.0f, 1.0f ) },
-		{ XMFLOAT3( 1.0f, -1.0f, 1.0f ), XMFLOAT4( 1.0f, 1.0f, 1.0f, 1.0f ) },
-		{ XMFLOAT3( -1.0f, -1.0f, 1.0f ), XMFLOAT4( 0.0f, 0.0f, 0.0f, 1.0f ) },
 	};
 
 	//Buffer Descriptor:
@@ -84,7 +80,7 @@ void CActorPlane::OnLoad()
 	//Lectura y escritura del buffer en el shader
 	d3dBufferDescriptor.Usage = D3D11_USAGE_DEFAULT; 
 
-	d3dBufferDescriptor.ByteWidth = sizeof( SimpleVertex ) * 8;
+	d3dBufferDescriptor.ByteWidth = sizeof( SimpleVertex ) * 4;
 	d3dBufferDescriptor.BindFlags = D3D11_BIND_VERTEX_BUFFER;
 	d3dBufferDescriptor.CPUAccessFlags = 0;
 	D3D11_SUBRESOURCE_DATA d3dInitData;
@@ -105,25 +101,12 @@ void CActorPlane::OnLoad()
 	{
 		3,1,0,
 		2,1,3,
-
-		0,5,4,
-		1,5,0,
-
-		3,4,7,
-		0,4,3,
-
-		1,6,5,
-		2,6,1,
-
-		2,7,6,
-		3,7,2,
-
-		6,4,5,
-		7,4,6,
+		/*3,0,1,
+		2,3,1,*/
 	};
 
 	d3dBufferDescriptor.Usage = D3D11_USAGE_DEFAULT;
-	d3dBufferDescriptor.ByteWidth = sizeof( WORD ) * 36;        // 36 vertices needed for 12 triangles in a triangle list
+	d3dBufferDescriptor.ByteWidth = sizeof( WORD ) * 12;        // 36 vertices needed for 12 triangles in a triangle list
 	d3dBufferDescriptor.BindFlags = D3D11_BIND_INDEX_BUFFER;
 	d3dBufferDescriptor.CPUAccessFlags = 0;
 	d3dInitData.pSysMem = a_wIndices;
@@ -180,5 +163,5 @@ void CActorPlane::Draw()
 	Graphics->GetDeviceContext()->VSSetShader( this->d3dVertexShader, NULL, 0 );
 	Graphics->GetDeviceContext()->VSSetConstantBuffers( 0, 1, &this->d3dConstantBuffer );
 	Graphics->GetDeviceContext()->PSSetShader( this->d3dPixelShader, NULL, 0 );
-	Graphics->GetDeviceContext()->DrawIndexed( 36, 0, 0 );
+	Graphics->GetDeviceContext()->DrawIndexed( 12, 0, 0 );
 }
