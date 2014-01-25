@@ -2,6 +2,7 @@
 #define _CSTATEMACHINE_H_
 
 #include "../Game.h"
+#include "CState.h"
 
 using namespace std;
 
@@ -20,6 +21,7 @@ private:
 
 	bool m_bIsStarted;
 	string m_strNextState;
+	CState *m_pCurrentState;
 };
 
 #endif

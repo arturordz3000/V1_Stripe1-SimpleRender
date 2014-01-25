@@ -208,3 +208,35 @@ void CGraphics::SwapBuffers()
 {
 	m_dxgSwapChain->Present(0, 0);
 }
+
+HRESULT CGraphics::CompileShaderFromFile( WCHAR* szFileName, LPCSTR szEntryPoint, LPCSTR szShaderModel, ID3DBlob** ppBlobOut )
+{
+	HRESULT hr = S_OK;
+
+		DWORD dwShaderFlags = D3DCOMPILE_ENABLE_STRICTNESS;
+	#if defined( DEBUG ) || defined( _DEBUG )
+		// Sirve para que el shader proveea de información
+		//para debugueo, pero sin afectar el rendimiento.
+		dwShaderFlags |= D3DCOMPILE_DEBUG;
+	#endif
+		
+		//Variable que se usa para obtener informacion
+		//de errores y poder saber en dónde ocurrió
+		//el error al compilar el shader
+		ID3DBlob* pErrorBlob;
+
+		//Compila el shader
+		hr = D3DX11CompileFromFile( szFileName, NULL, NULL, szEntryPoint, szShaderModel, 
+			dwShaderFlags, 0, NULL, ppBlobOut, &pErrorBlob, NULL );
+
+		if( FAILED(hr) )
+		{
+			if( pErrorBlob != NULL )
+				OutputDebugStringA( (char*)pErrorBlob->GetBufferPointer() );
+			if( pErrorBlob ) pErrorBlob->Release();
+			return hr;
+		}
+		if( pErrorBlob ) pErrorBlob->Release();
+
+		return S_OK;
+}

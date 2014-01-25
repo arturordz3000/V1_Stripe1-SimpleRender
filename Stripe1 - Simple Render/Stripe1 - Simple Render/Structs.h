@@ -3,7 +3,7 @@
 
 #include "Game.h"
 
-struct Vertex
+struct SimpleVertex
 {
 	XMFLOAT3 m_f3Position;
 	XMFLOAT4 m_f4Color;

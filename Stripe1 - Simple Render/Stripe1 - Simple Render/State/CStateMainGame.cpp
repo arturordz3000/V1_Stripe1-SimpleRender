@@ -2,12 +2,13 @@
 
 void CStateMainGame::OnLoad()
 {
-
+	CActorPlane *cPlane = new CActorPlane();
+	ActorMgr->LoadActor(cPlane);
 }
 
 CStateMainGame::CStateMainGame() : CState()
 {
-
+	this->OnLoad();
 }
 
 CStateMainGame::~CStateMainGame()

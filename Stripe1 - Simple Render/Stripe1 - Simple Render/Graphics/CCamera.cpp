@@ -3,9 +3,11 @@
 CCamera::CCamera()
 {
 	// Inicializamos los parámetros de nuestra cámara
-	m_vUp = XMVectorSet(0.0f, 1.0f, 0.0f, 0.0f);
-	m_vEye = XMVectorSet(0.0f, 0.0f, 0.0f, 0.0f);
-	m_vLookAt = XMVectorSet(0.0f, 0.0f, 0.1f, 0.0f);
+	m_vUp = XMVectorSet( 0.0f, 1.0f, 0.0f, 0.0f );
+	m_vEye = XMVectorSet( 0.0f, 1.0f, -5.0f, 0.0f );
+	m_vLookAt = XMVectorSet( 0.0f, 1.0f, 0.0f, 0.0f );
+
+	m_mxProjection = XMMatrixPerspectiveFovLH( XM_PIDIV2, Graphics->GetWidth() / (FLOAT)Graphics->GetHeight(), 0.01f, 100.0f );
 
 	// Damos acceso global a esta instancia
 	Camera = this;

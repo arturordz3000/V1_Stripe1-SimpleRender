@@ -14,8 +14,11 @@ public:
 	bool InitGraphicsMode();
 	void ClearScreen(const int &iR, const int &iG, const int &iB);
 	void SwapBuffers();
+	HRESULT CompileShaderFromFile( WCHAR* szFileName, LPCSTR szEntryPoint, LPCSTR szShaderModel, ID3DBlob** ppBlobOut );
 	int GetWidth() { return m_iWidth; }
 	int GetHeight() { return m_iHeight; }
+	ID3D11Device *GetDevice() { return m_d3dDevice; }
+	ID3D11DeviceContext *GetDeviceContext() { return m_d3dDeviceContext; }
 	D3D_DRIVER_TYPE GetDriverType() { return m_d3dDriverType; }
 	D3D_FEATURE_LEVEL GetFeatureLevel() { return m_d3dFeatureLevel; }
 

@@ -21,7 +21,6 @@ CGame::CGame()
 
 	// Inicializamos la máquina de estados
 	m_pStateMachine = new CStateMachine();
-	m_pStateMachine->Start();
 
 	// Inicializamos el manejador de actores
 	m_pActorMgr = new CActorMgr();
@@ -50,6 +49,8 @@ int CGame::Run()
 	// Inicializamos la ventana
 	if(!Graphics->InitWindow(600, 400, true))
 		m_bIsRunning = false;
+	
+	m_pStateMachine->Start();
 
 	// Loop principal
 	while (m_bIsRunning)

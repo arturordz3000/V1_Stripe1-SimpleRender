@@ -18,6 +18,7 @@ void CStateMachine::Start()
 	m_bIsStarted = true;
 
 	// Aquí inicializaremos el estado default
+	m_pCurrentState = new CStateMainGame();
 }
 
 void CStateMachine::DoFrame()
@@ -26,7 +27,7 @@ void CStateMachine::DoFrame()
 	{
 		Graphics->ClearScreen(0, 255, 255);
 
-		// Aquí dibujaremos el state actual
+		m_pCurrentState->DoFrame();
 
 		Graphics->SwapBuffers();
 	}

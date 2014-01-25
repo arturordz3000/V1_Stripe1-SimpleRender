@@ -10,11 +10,11 @@ public:
 	CActor();
 	~CActor();
 
-	virtual void OnLoad() = 0;
+	virtual void OnLoad();
 	virtual void Update() = 0;
 	virtual void Draw() = 0;
 
-private:
+protected:
 	ID3D11VertexShader* d3dVertexShader;
 	ID3D11PixelShader* d3dPixelShader;
 	ID3D11InputLayout* d3dInputLayout;
@@ -24,6 +24,7 @@ private:
 	XMFLOAT3 vTranslation;
 	XMFLOAT3 vRotation;
 	XMFLOAT3 vScale;
+	XMMATRIX mxWorld;
 };
 
 #endif

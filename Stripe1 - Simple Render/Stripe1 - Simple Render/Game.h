@@ -13,6 +13,7 @@
 
 #include "Gameh/CGame.h"
 #include "Gameh/CActor.h"
+#include "Gameh/CActorPlane.h"
 #include "Gameh/CActorMgr.h"
 #include "Graphics.h"
 #include "State.h"

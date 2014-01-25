@@ -15,6 +15,7 @@ public:
 	XMVECTOR SetPosition(XMVECTOR vPosition) { m_vEye = vPosition; }
 	XMVECTOR SetTarget(XMVECTOR vTarget) { m_vLookAt = vTarget; }
 	XMMATRIX GetViewMatrix();
+	XMMATRIX GetProjectionMatrix() { return m_mxProjection; }
 
 private:
 
@@ -23,6 +24,7 @@ private:
 			 m_vUp;
 
 	XMMATRIX m_mxView;
+	XMMATRIX m_mxProjection;
 };
 
 #endif
