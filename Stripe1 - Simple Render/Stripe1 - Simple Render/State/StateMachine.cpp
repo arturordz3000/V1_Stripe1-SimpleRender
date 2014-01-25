@@ -25,7 +25,7 @@ void CStateMachine::DoFrame()
 {
 	if (m_bIsStarted)
 	{
-		Graphics->ClearScreen(0, 255, 255);
+		Graphics->ClearScreen(0, 50, 130);
 
 		m_pCurrentState->DoFrame();
 
