@@ -130,7 +130,7 @@ bool CGraphics::InitGraphicsMode()
 	dxgSwapChainDesc.BufferUsage = DXGI_USAGE_RENDER_TARGET_OUTPUT;
 	dxgSwapChainDesc.OutputWindow = m_hWnd;
 	dxgSwapChainDesc.Windowed = m_bIsWindowed;
-	dxgSwapChainDesc.SampleDesc.Count = 1;
+	dxgSwapChainDesc.SampleDesc.Count = 1; // Multisampling
 	dxgSwapChainDesc.SampleDesc.Quality = 0;
 
 	for (int i = 0; i < iDriverTypesCount; i++)
@@ -199,7 +199,7 @@ void CGraphics::ClearScreen(const int &iR, const int &iG, const int &iB)
 	float fUnitG = (float)iG * fNormalizer;
 	float fUnitB = (float)iB * fNormalizer;
 
-	float a_fClearColor[] = { fUnitR, fUnitG, fUnitB, 255 };
+	float a_fClearColor[] = { fUnitR, fUnitG, fUnitB, 1 };
 
 	m_d3dDeviceContext->ClearRenderTargetView(m_d3dRenderTarget, a_fClearColor);
 }

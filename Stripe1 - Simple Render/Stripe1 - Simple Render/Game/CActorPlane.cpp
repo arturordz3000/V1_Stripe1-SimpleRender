@@ -32,7 +32,7 @@ void CActorPlane::OnLoad()
 		//de tipo flotante. Los float son de 4 bytes, entonces 4x3=12
 		//y es por eso que se pone aquí un 12, que es donde comienza
 		//el vector de color.
-		{ "COLOR", 0, DXGI_FORMAT_R32G32B32A32_FLOAT, 0, 12, D3D11_INPUT_PER_VERTEX_DATA, 0 },
+		{ "COLOR", 0, DXGI_FORMAT_R32G32B32A32_FLOAT, 0, D3D11_APPEND_ALIGNED_ELEMENT, D3D11_INPUT_PER_VERTEX_DATA, 0 },
 	};
 
 	UINT numElements = ARRAYSIZE( a_d3dLayout );
@@ -80,7 +80,7 @@ void CActorPlane::OnLoad()
 	//Lectura y escritura del buffer en el shader
 	d3dBufferDescriptor.Usage = D3D11_USAGE_DEFAULT; 
 
-	d3dBufferDescriptor.ByteWidth = sizeof( SimpleVertex ) * 4;
+	d3dBufferDescriptor.ByteWidth = sizeof( SimpleVertex ) * ARRAYSIZE(a_sVertices);
 	d3dBufferDescriptor.BindFlags = D3D11_BIND_VERTEX_BUFFER;
 	d3dBufferDescriptor.CPUAccessFlags = 0;
 	D3D11_SUBRESOURCE_DATA d3dInitData;
@@ -101,12 +101,12 @@ void CActorPlane::OnLoad()
 	{
 		3,1,0,
 		2,1,3,
-		/*3,0,1,
-		2,3,1,*/
+		3,0,1,
+		2,3,1,
 	};
 
 	d3dBufferDescriptor.Usage = D3D11_USAGE_DEFAULT;
-	d3dBufferDescriptor.ByteWidth = sizeof( WORD ) * 12;        // 36 vertices needed for 12 triangles in a triangle list
+	d3dBufferDescriptor.ByteWidth = sizeof( WORD ) * ARRAYSIZE(a_wIndices);        // 36 vertices needed for 12 triangles in a triangle list
 	d3dBufferDescriptor.BindFlags = D3D11_BIND_INDEX_BUFFER;
 	d3dBufferDescriptor.CPUAccessFlags = 0;
 	d3dInitData.pSysMem = a_wIndices;
