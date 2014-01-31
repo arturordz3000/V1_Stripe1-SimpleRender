@@ -34,6 +34,12 @@
     <Filter Include="Shaders">
       <UniqueIdentifier>{3dcab001-2a9d-4058-9577-d97444fe2217}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\Inputh">
+      <UniqueIdentifier>{633e0c07-dd66-414c-bcb4-1f7be4b7e0a7}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Input">
+      <UniqueIdentifier>{d520db07-c36b-4f7a-991b-83b03197fba3}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -68,6 +74,9 @@
     </ClCompile>
     <ClCompile Include="Game\CActorPlane.cpp">
       <Filter>Source Files\Game</Filter>
+    </ClCompile>
+    <ClCompile Include="Input\CInput.cpp">
+      <Filter>Source Files\Input</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -111,6 +120,12 @@
       <Filter>Header Files\Gameh</Filter>
     </ClInclude>
     <ClInclude Include="resource.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Inputh\CInput.h">
+      <Filter>Header Files\Inputh</Filter>
+    </ClInclude>
+    <ClInclude Include="Input.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

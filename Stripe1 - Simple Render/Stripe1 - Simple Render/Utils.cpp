@@ -9,7 +9,9 @@ LRESULT CALLBACK WindowProc(HWND hWnd, UINT message, WPARAM wParam, LPARAM lPara
 		Game->Exit();
 		break;
 	case WM_KEYDOWN:
-		// Haremos código por aquí después
+		
+		Input->SetPressedKey(wParam);
+
 		break;
 	}
 

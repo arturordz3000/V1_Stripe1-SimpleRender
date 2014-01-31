@@ -18,6 +18,7 @@
 #include "Graphics.h"
 #include "State.h"
 #include "Structs.h"
+#include "Input.h"
 
 extern HINSTANCE g_hInstance;
 extern int g_nCmdShow;

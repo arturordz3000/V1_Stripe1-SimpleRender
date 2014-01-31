@@ -17,7 +17,8 @@ CStateMainGame::~CStateMainGame()
 }
 
 void CStateMainGame::DoFrame()
-{
+{	
 	ActorMgr->UpdateActors();
-	ActorMgr->DrawActors();
+	ActorMgr->DrawActors();	
+	Input->ResetKeyboard();
 }

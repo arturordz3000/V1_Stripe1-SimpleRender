@@ -83,6 +83,7 @@
     <ClCompile Include="Game\CGame.cpp" />
     <ClCompile Include="Graphics\CCamera.cpp" />
     <ClCompile Include="Graphics\CGraphics.cpp" />
+    <ClCompile Include="Input\CInput.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="State\CState.cpp" />
     <ClCompile Include="State\CStateMainGame.cpp" />
@@ -98,6 +99,8 @@
     <ClInclude Include="Graphics.h" />
     <ClInclude Include="Graphicsh\CCamera.h" />
     <ClInclude Include="Graphicsh\CGraphics.h" />
+    <ClInclude Include="Input.h" />
+    <ClInclude Include="Inputh\CInput.h" />
     <ClInclude Include="resource.h" />
     <ClInclude Include="State.h" />
     <ClInclude Include="Stateh\CState.h" />

@@ -4,6 +4,7 @@
 #include "../Game.h"
 #include "../Graphics.h"
 #include "../State.h"
+#include "../Input.h"
 #include "CActorMgr.h"
 
 extern class CGame *Game;
@@ -11,6 +12,7 @@ extern CGraphics *Graphics;
 extern CCamera *Camera;
 extern CStateMachine *StateMachine;
 extern CActorMgr *ActorMgr;
+extern CInput *Input;
 
 class CGame
 {
@@ -28,6 +30,7 @@ private:
 	CCamera *m_pCamera;
 	CStateMachine *m_pStateMachine;
 	CActorMgr *m_pActorMgr;
+	CInput *m_pInput;
 
 	bool m_bIsRunning;
 };

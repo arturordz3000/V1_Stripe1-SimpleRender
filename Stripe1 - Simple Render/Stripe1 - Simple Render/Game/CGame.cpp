@@ -5,6 +5,7 @@ CGraphics *Graphics	= NULL;
 CCamera *Camera	= NULL;
 CStateMachine *StateMachine = NULL;
 CActorMgr *ActorMgr = NULL;
+CInput *Input = NULL;
 
 CGame::CGame()
 {
@@ -24,6 +25,9 @@ CGame::CGame()
 
 	// Inicializamos el manejador de actores
 	m_pActorMgr = new CActorMgr();
+
+	// Inicializamos el input
+	m_pInput = new CInput();
 }
 
 CGame::~CGame()
