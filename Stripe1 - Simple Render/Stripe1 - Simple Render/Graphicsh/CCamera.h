@@ -3,7 +3,7 @@
 
 #include "../Game.h"
 
-class CCamera
+__declspec(align(16)) class CCamera
 {
 public:
 

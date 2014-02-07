@@ -18,7 +18,13 @@ CGame::CGame()
 	m_pGraphics = new CGraphics();
 
 	// Inicializamos la cámara
-	m_pCamera = new CCamera();
+	void *cameraPtr;
+	size_t alignment = 16;
+	size_t objectSize = sizeof(CCamera);
+
+	cameraPtr = _aligned_malloc(objectSize, alignment);
+
+	m_pCamera = new (cameraPtr) CCamera();
 
 	// Inicializamos la máquina de estados
 	m_pStateMachine = new CStateMachine();

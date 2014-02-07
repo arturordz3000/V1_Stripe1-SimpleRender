@@ -78,6 +78,9 @@
     <ClCompile Include="Input\CInput.cpp">
       <Filter>Source Files\Input</Filter>
     </ClCompile>
+    <ClCompile Include="Game\CActorTexturedCube.cpp">
+      <Filter>Source Files\Game</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Gameh\CGame.h">
@@ -128,6 +131,9 @@
     <ClInclude Include="Input.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="Gameh\CActorTexturedCube.h">
+      <Filter>Header Files\Gameh</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="Stripe1 - Simple Render.rc">
@@ -136,6 +142,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="SimpleShader.fx">
+      <Filter>Shaders</Filter>
+    </None>
+    <None Include="TextureShader.fx">
       <Filter>Shaders</Filter>
     </None>
   </ItemGroup>

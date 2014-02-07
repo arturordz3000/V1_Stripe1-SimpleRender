@@ -2,8 +2,9 @@
 
 void CStateMainGame::OnLoad()
 {
-	CActorPlane *cPlane = new CActorPlane();
-	ActorMgr->LoadActor(cPlane);
+	CActorTexturedCube *cCube = new CActorTexturedCube();
+	//CActorPlane *cCube = new CActorPlane();
+	ActorMgr->LoadActor(cCube);
 }
 
 CStateMainGame::CStateMainGame() : CState()

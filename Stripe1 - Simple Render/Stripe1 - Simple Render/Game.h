@@ -9,11 +9,12 @@
 #include <d3dcompiler.h>
 #include <list>
 
-#define _XM_NO_INTRINSICS_
+//#define _XM_NO_INTRINSICS_
 
 #include "Gameh/CGame.h"
 #include "Gameh/CActor.h"
 #include "Gameh/CActorPlane.h"
+#include "Gameh/CActorTexturedCube.h"
 #include "Gameh/CActorMgr.h"
 #include "Graphics.h"
 #include "State.h"

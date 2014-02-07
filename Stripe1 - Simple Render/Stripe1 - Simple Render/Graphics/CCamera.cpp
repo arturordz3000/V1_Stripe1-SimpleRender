@@ -3,6 +3,7 @@
 CCamera::CCamera()
 {
 	// Inicializamos los parámetros de nuestra cámara
+	ZeroMemory(&m_vUp, sizeof(XMVECTOR));
 	m_vUp = XMVectorSet( 0.0f, 1.0f, 0.0f, 0.0f );
 	m_vEye = XMVectorSet( 0.0f, 1.0f, -5.0f, 0.0f );
 	m_vLookAt = XMVectorSet( 0.0f, 1.0f, 0.0f, 0.0f );
