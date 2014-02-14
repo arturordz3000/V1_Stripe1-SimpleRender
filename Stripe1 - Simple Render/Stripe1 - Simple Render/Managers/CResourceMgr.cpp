@@ -1,5 +1,15 @@
 #include "../Game.h"
 
+CResources::CResources()
+{
+
+}
+
+CResources::~CResources()
+{
+
+}
+
 CResourceMgr::CResourceMgr()
 {
 	ResourceMgr = this;
@@ -11,24 +21,14 @@ CResourceMgr::~CResourceMgr()
 	ResourceMgr = NULL;
 }
 
-void CResourceMgr::AddResources(CResources *pResources, int &iResourcesId)
+void CResourceMgr::AddResources(CResources *pResources, unsigned int &iResourcesId)
 {
 	iResourcesId = iResourcesCount;
 	lResources.push_back(pResources);
 	iResourcesCount++;	
 }
 
-CResourcesBuilder<class VertexType, class IndexType, class ConstantType>::CResourcesBuilder()
-{
-
-}
-
-CResourcesBuilder<class VertexType, class IndexType, class ConstantType>::~CResourcesBuilder()
-{
-
-}
-
-bool CResourcesBuilder<class VertexType, class IndexType, class ConstantType>::AddVertexShaderResource(WCHAR *wFileName, LPCSTR lstrEntryPoint, LPCSTR lstrShaderModel, 
+/*bool CResourcesBuilder<class VertexType, class IndexType, class ConstantType>::AddVertexShaderResource(WCHAR *wFileName, LPCSTR lstrEntryPoint, LPCSTR lstrShaderModel, 
 		D3D11_INPUT_ELEMENT_DESC a_d3dLayout[], unsigned int uiNumLayoutParams)
 {
 	ID3DBlob* d3dVertexShaderBlob = NULL;
@@ -128,7 +128,7 @@ bool CResourcesBuilder<class VertexType, class IndexType, class ConstantType>::A
 	return true;
 }
 
-bool CResourcesBuilder<class VertexType, class IndexType, class ConstantType>::AddConstantBuffer(ConstantType constantData[], unsigned int iSizeConstantData)
+bool CResourcesBuilder<class VertexType, class IndexType, class ConstantType>::AddConstantBuffer(unsigned int iSizeConstantData)
 {
 	//Buffer Descriptor:
 	//Configura un recurso, en este caso
@@ -196,4 +196,4 @@ void CResourcesBuilder<class VertexType, class IndexType, class ConstantType>::B
 	pResourcesOutput->SetSampler(this->d3dSampler);
 	pResourcesOutput->SetTexture(this->d3dTexture);
 	pResourcesOutput->SetConstantBuffer(this->d3dConstantBuffer);
-}
+}*/

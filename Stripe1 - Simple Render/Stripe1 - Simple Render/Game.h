@@ -1,6 +1,8 @@
 #ifndef _GAME_H_
 #define _GAME_H_
 
+#define _XM_NO_INTRINSICS_
+
 #include <Windows.h>
 #include <iostream>
 #include <d3d11.h>
@@ -8,8 +10,6 @@
 #include <xnamath.h>
 #include <d3dcompiler.h>
 #include <list>
-
-//#define _XM_NO_INTRINSICS_
 
 #include "Gameh/CGame.h"
 #include "Gameh/CActor.h"

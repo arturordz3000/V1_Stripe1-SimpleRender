@@ -5,6 +5,12 @@
 
 class CStateMainGame : public CState
 {
+
+private:
+	unsigned int uiTexturedCubeResourcesId;
+
+	void InitializeResources();
+
 public:
 
 	CStateMainGame();
