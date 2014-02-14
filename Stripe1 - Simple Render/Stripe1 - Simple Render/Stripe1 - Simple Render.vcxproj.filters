@@ -40,6 +40,12 @@
     <Filter Include="Source Files\Input">
       <UniqueIdentifier>{d520db07-c36b-4f7a-991b-83b03197fba3}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\Managersh">
+      <UniqueIdentifier>{73a7eb7e-1053-48ee-a6dc-176a486e9bbc}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Managers">
+      <UniqueIdentifier>{4b5f279f-cbff-43cc-bff5-395c2b14fbf3}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -80,6 +86,9 @@
     </ClCompile>
     <ClCompile Include="Game\CActorTexturedCube.cpp">
       <Filter>Source Files\Game</Filter>
+    </ClCompile>
+    <ClCompile Include="Managers\CResourceMgr.cpp">
+      <Filter>Source Files\Managers</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -133,6 +142,9 @@
     </ClInclude>
     <ClInclude Include="Gameh\CActorTexturedCube.h">
       <Filter>Header Files\Gameh</Filter>
+    </ClInclude>
+    <ClInclude Include="Managersh\CResourceMgr.h">
+      <Filter>Header Files\Managersh</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

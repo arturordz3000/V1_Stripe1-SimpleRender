@@ -8,7 +8,7 @@ CActorMgr::CActorMgr()
 
 CActorMgr::~CActorMgr()
 {
-
+	ActorMgr = NULL;
 }
 
 void CActorMgr::LoadActor(CActor *lActor)

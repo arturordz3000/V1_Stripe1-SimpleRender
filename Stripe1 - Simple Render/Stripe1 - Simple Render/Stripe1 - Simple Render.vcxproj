@@ -86,6 +86,7 @@
     <ClCompile Include="Graphics\CGraphics.cpp" />
     <ClCompile Include="Input\CInput.cpp" />
     <ClCompile Include="main.cpp" />
+    <ClCompile Include="Managers\CResourceMgr.cpp" />
     <ClCompile Include="State\CState.cpp" />
     <ClCompile Include="State\CStateMainGame.cpp" />
     <ClCompile Include="State\StateMachine.cpp" />
@@ -103,6 +104,7 @@
     <ClInclude Include="Graphicsh\CGraphics.h" />
     <ClInclude Include="Input.h" />
     <ClInclude Include="Inputh\CInput.h" />
+    <ClInclude Include="Managersh\CResourceMgr.h" />
     <ClInclude Include="resource.h" />
     <ClInclude Include="State.h" />
     <ClInclude Include="Stateh\CState.h" />

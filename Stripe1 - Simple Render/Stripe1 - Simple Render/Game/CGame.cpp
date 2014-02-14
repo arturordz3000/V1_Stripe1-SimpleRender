@@ -6,6 +6,7 @@ CCamera *Camera	= NULL;
 CStateMachine *StateMachine = NULL;
 CActorMgr *ActorMgr = NULL;
 CInput *Input = NULL;
+CResourceMgr *ResourceMgr = NULL;
 
 CGame::CGame()
 {
@@ -34,6 +35,9 @@ CGame::CGame()
 
 	// Inicializamos el input
 	m_pInput = new CInput();
+
+	// Inicializamos el manejador de recursos
+	m_pResourcesMgr = new CResourceMgr();
 }
 
 CGame::~CGame()
