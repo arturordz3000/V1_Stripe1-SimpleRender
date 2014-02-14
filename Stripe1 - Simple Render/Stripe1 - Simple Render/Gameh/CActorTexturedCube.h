@@ -15,8 +15,8 @@ public:
 	void Draw();
 
 private:	
-	ID3D11SamplerState* d3dSamplerLinear;
-	ID3D11ShaderResourceView* d3dTexture;
+	/*ID3D11SamplerState* d3dSamplerLinear;
+	ID3D11ShaderResourceView* d3dTexture;*/
 };
 
 #endif

@@ -3,7 +3,7 @@
 
 void CActorPlane::OnLoad()
 {
-	ID3DBlob* d3dVertexShaderBlob = NULL;
+	/*ID3DBlob* d3dVertexShaderBlob = NULL;
 	HRESULT hResult = Graphics->CompileShaderFromFile(L"SimpleShader.fx", "VS", "vs_4_0", &d3dVertexShaderBlob);
 
 	if (FAILED(hResult)) {
@@ -144,7 +144,7 @@ void CActorPlane::OnLoad()
 	d3dBufferDescriptor.CPUAccessFlags = 0;
 	hResult = Graphics->GetDevice()->CreateBuffer( &d3dBufferDescriptor, NULL, &this->d3dConstantBuffer );
 	if( FAILED( hResult ) )
-		Game->Exit();
+		Game->Exit();*/
 
 	this->mxWorld = XMMatrixIdentity();
 }
@@ -185,13 +185,21 @@ void CActorPlane::Draw()
 	sMatrixBuffer.m_mxWorld = XMMatrixTranspose( this->mxWorld );
 	sMatrixBuffer.m_mxView = XMMatrixTranspose( Camera->GetViewMatrix() );
 	sMatrixBuffer.m_mxProjection = XMMatrixTranspose( Camera->GetProjectionMatrix() );
-	Graphics->GetDeviceContext()->UpdateSubresource( this->d3dConstantBuffer, 0, NULL, &sMatrixBuffer, 0, 0 );
+	Graphics->GetDeviceContext()->UpdateSubresource( this->m_pResources->d3dConstantBuffer, 0, NULL, &sMatrixBuffer, 0, 0 );
 
 	//
 	// Renderea un cubo
 	//
-	Graphics->GetDeviceContext()->VSSetShader( this->d3dVertexShader, NULL, 0 );
-	Graphics->GetDeviceContext()->VSSetConstantBuffers( 0, 1, &this->d3dConstantBuffer );
-	Graphics->GetDeviceContext()->PSSetShader( this->d3dPixelShader, NULL, 0 );
+	UINT uiStride = sizeof( SimpleVertex );
+	UINT uiOffset = 0;
+
+	Graphics->GetDeviceContext()->IASetVertexBuffers( 0, 1,  &this->m_pResources->d3dVertexBuffer, &uiStride, &uiOffset );
+	Graphics->GetDeviceContext()->IASetInputLayout(this->m_pResources->d3dInputLayout);
+	Graphics->GetDeviceContext()->IASetIndexBuffer( this->m_pResources->d3dIndexBuffer, DXGI_FORMAT_R16_UINT, 0 );
+	Graphics->GetDeviceContext()->IASetPrimitiveTopology( D3D11_PRIMITIVE_TOPOLOGY_TRIANGLELIST );
+	Graphics->GetDeviceContext()->VSSetShader( this->m_pResources->d3dVertexShader, NULL, 0 );
+	Graphics->GetDeviceContext()->VSSetConstantBuffers( 0, 1, &this->m_pResources->d3dConstantBuffer );
+	Graphics->GetDeviceContext()->PSSetShader(this->m_pResources->d3dPixelShader, NULL, 0 );
+	Graphics->GetDeviceContext()->PSSetSamplers( 0, 1, &this->m_pResources->d3dSampler );
 	Graphics->GetDeviceContext()->DrawIndexed( 36, 0, 0 );
 }

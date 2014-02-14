@@ -5,6 +5,7 @@ void CStateMainGame::OnLoad()
 	this->InitializeResources();
 
 	CActorTexturedCube *cCube = new CActorTexturedCube();
+	cCube->SetResourcesId(this->uiTexturedCubeResourcesId);
 	ActorMgr->LoadActor(cCube);
 }
 

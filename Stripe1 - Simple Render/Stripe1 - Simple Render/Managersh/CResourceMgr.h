@@ -28,7 +28,7 @@ public:
 	void SetIndexBuffer(ID3D11Buffer* d3dIndexBuffer) { this->d3dIndexBuffer = d3dIndexBuffer; }
 	void SetConstantBuffer(ID3D11Buffer* d3dConstantBuffer) { this->d3dConstantBuffer = d3dConstantBuffer; }
 
-private:	
+public:	
 	ID3D11SamplerState* d3dSampler;
 	ID3D11ShaderResourceView* d3dTexture;
 	ID3D11VertexShader* d3dVertexShader;

@@ -2,6 +2,9 @@
 #define _CACTOR_H_
 
 #include "../Game.h"
+#include "../Managersh/CResourceMgr.h"
+
+extern CResourceMgr *ResourceMgr;
 
 class CActor
 {
@@ -14,13 +17,12 @@ public:
 	virtual void Update() = 0;
 	virtual void Draw() = 0;
 
+	void SetResourcesId(unsigned int uiResourcesId) { this->m_pResources = ResourceMgr->GetResourcesById(uiResourcesId); }
+
 protected:
-	ID3D11VertexShader* d3dVertexShader;
-	ID3D11PixelShader* d3dPixelShader;
-	ID3D11InputLayout* d3dInputLayout;
-	ID3D11Buffer* d3dVertexBuffer;
-	ID3D11Buffer* d3dIndexBuffer;
-	ID3D11Buffer* d3dConstantBuffer;
+	
+	CResources *m_pResources;
+
 	XMFLOAT3 vTranslation;
 	XMFLOAT3 vRotation;
 	XMFLOAT3 vScale;
