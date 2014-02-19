@@ -90,6 +90,9 @@
     <ClCompile Include="Managers\CResourceMgr.cpp">
       <Filter>Source Files\Managers</Filter>
     </ClCompile>
+    <ClCompile Include="Game\CActorTerrain.cpp">
+      <Filter>Source Files\Game</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Gameh\CGame.h">
@@ -146,6 +149,9 @@
     <ClInclude Include="Managersh\CResourceMgr.h">
       <Filter>Header Files\Managersh</Filter>
     </ClInclude>
+    <ClInclude Include="Gameh\CActorTerrain.h">
+      <Filter>Header Files\Gameh</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ResourceCompile Include="Stripe1 - Simple Render.rc">
@@ -157,6 +163,9 @@
       <Filter>Shaders</Filter>
     </None>
     <None Include="TextureShader.fx">
+      <Filter>Shaders</Filter>
+    </None>
+    <None Include="TerrainShader.fx">
       <Filter>Shaders</Filter>
     </None>
   </ItemGroup>

@@ -155,7 +155,7 @@ public:
 
 		// Creamos el constant buffer
 		d3dBufferDescriptor.Usage = D3D11_USAGE_DEFAULT;
-		d3dBufferDescriptor.ByteWidth = sizeof(MatrixBuffer);
+		d3dBufferDescriptor.ByteWidth = iSizeConstantData;
 		d3dBufferDescriptor.BindFlags = D3D11_BIND_CONSTANT_BUFFER;
 		d3dBufferDescriptor.CPUAccessFlags = 0;
 		HRESULT hResult = Graphics->GetDevice()->CreateBuffer( &d3dBufferDescriptor, NULL, &this->d3dConstantBuffer );
@@ -231,6 +231,7 @@ public:
 
 	void AddResources(CResources *pResources, unsigned int &iResourcesId);
 	CResources* GetResourcesById(unsigned int &iResourcesId) { return lResources[iResourcesId]; }
+	void LoadImageData(WCHAR* heightTex, BYTE** bHeightData, int &iImageWidth, int &iImageHeight, ID3D11Resource *d3dHeightMap);
 
 private:
 	unsigned int iResourcesCount;

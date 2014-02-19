@@ -15,6 +15,7 @@
 #include "Gameh/CActor.h"
 #include "Gameh/CActorPlane.h"
 #include "Gameh/CActorTexturedCube.h"
+#include "Gameh/CActorTerrain.h"
 #include "Gameh/CActorMgr.h"
 #include "Managersh/CResourceMgr.h"
 #include "Graphics.h"

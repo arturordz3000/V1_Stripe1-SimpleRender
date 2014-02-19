@@ -15,11 +15,26 @@ struct TexturedVertex
 	XMFLOAT2 m_f2UV;
 };
 
+struct TerrainVertex
+{
+	XMFLOAT3 pos;
+	XMFLOAT2 uv;
+	XMFLOAT2 blendUV;
+	XMFLOAT3 normal;
+};
+
 struct MatrixBuffer
 {
 	XMMATRIX m_mxWorld;
 	XMMATRIX m_mxView;
 	XMMATRIX m_mxProjection;
+};
+
+struct TerrainConstantBuffer
+{
+	XMMATRIX m_mxWorld;
+	XMMATRIX m_mxView;
+	XMMATRIX m_mxProjection;	
 };
 
 #endif

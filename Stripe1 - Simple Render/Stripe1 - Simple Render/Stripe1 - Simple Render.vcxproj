@@ -80,6 +80,7 @@
     <ClCompile Include="Game\CActor.cpp" />
     <ClCompile Include="Game\CActorMgr.cpp" />
     <ClCompile Include="Game\CActorPlane.cpp" />
+    <ClCompile Include="Game\CActorTerrain.cpp" />
     <ClCompile Include="Game\CActorTexturedCube.cpp" />
     <ClCompile Include="Game\CGame.cpp" />
     <ClCompile Include="Graphics\CCamera.cpp" />
@@ -97,6 +98,7 @@
     <ClInclude Include="Gameh\CActor.h" />
     <ClInclude Include="Gameh\CActorMgr.h" />
     <ClInclude Include="Gameh\CActorPlane.h" />
+    <ClInclude Include="Gameh\CActorTerrain.h" />
     <ClInclude Include="Gameh\CActorTexturedCube.h" />
     <ClInclude Include="Gameh\CGame.h" />
     <ClInclude Include="Graphics.h" />
@@ -117,6 +119,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="SimpleShader.fx" />
+    <None Include="TerrainShader.fx" />
     <None Include="TextureShader.fx" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
