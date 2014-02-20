@@ -78,6 +78,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="Game\CActor.cpp" />
+    <ClCompile Include="Game\CActorBumpedCube.cpp" />
     <ClCompile Include="Game\CActorMgr.cpp" />
     <ClCompile Include="Game\CActorPlane.cpp" />
     <ClCompile Include="Game\CActorTerrain.cpp" />
@@ -96,6 +97,7 @@
   <ItemGroup>
     <ClInclude Include="Game.h" />
     <ClInclude Include="Gameh\CActor.h" />
+    <ClInclude Include="Gameh\CActorBumpedCube.h" />
     <ClInclude Include="Gameh\CActorMgr.h" />
     <ClInclude Include="Gameh\CActorPlane.h" />
     <ClInclude Include="Gameh\CActorTerrain.h" />
@@ -118,6 +120,7 @@
     <ResourceCompile Include="Stripe1 - Simple Render.rc" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="BumpedShader.fx" />
     <None Include="SimpleShader.fx" />
     <None Include="TerrainShader.fx" />
     <None Include="TextureShader.fx" />

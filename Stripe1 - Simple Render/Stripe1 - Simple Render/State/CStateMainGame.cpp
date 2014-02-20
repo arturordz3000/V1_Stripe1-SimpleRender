@@ -1,6 +1,7 @@
 #include "../Game.h"
 
 void InitializeTexturedCubeResources(unsigned int &uiOutputId);
+void InitializeBumpedCubeResources(unsigned int &uiOutputId);
 void InitializeTerrainResources(unsigned int &uiOutputId);
 
 int indexCount = 0;
@@ -13,10 +14,14 @@ void CStateMainGame::OnLoad()
 	cCube->SetResourcesId(this->uiTexturedCubeResourcesId);
 	ActorMgr->LoadActor(cCube);*/
 
-	CActorTerrain *cTerrain = new CActorTerrain();
+	/*CActorTerrain *cTerrain = new CActorTerrain();
 	cTerrain->iIndexCount = indexCount;
 	cTerrain->SetResourcesId(this->uiTerrainResourcesId);
-	ActorMgr->LoadActor(cTerrain);
+	ActorMgr->LoadActor(cTerrain);*/
+
+	CActorBumpedCube *cCube = new CActorBumpedCube();
+	cCube->SetResourcesId(this->uiBumpedCubeResourcesId);
+	ActorMgr->LoadActor(cCube);
 }
 
 CStateMainGame::CStateMainGame() : CState()
@@ -39,7 +44,8 @@ void CStateMainGame::DoFrame()
 void CStateMainGame::InitializeResources()
 {
 	//InitializeTexturedCubeResources(this->uiTexturedCubeResourcesId);
-	InitializeTerrainResources(this->uiTerrainResourcesId);
+	//InitializeTerrainResources(this->uiTerrainResourcesId);
+	InitializeBumpedCubeResources(this->uiBumpedCubeResourcesId);
 }
 
 void InitializeTexturedCubeResources(unsigned int &uiOutputId)
@@ -154,8 +160,6 @@ void InitializeTerrainResources(unsigned int &uiOutputId)
 	TerrainVertex* vertices = NULL;
 	BYTE** alturaData = NULL;
 	ID3D11Resource* heightMap = NULL;
-
-	//ResourceMgr->LoadImageData(L"Textures\\GrandCanyon.png", &alturaData, anchoTexTerr, altoTexTerr, heightMap);
 
 	HRESULT resultado;
 		D3DX11_IMAGE_INFO texInfo;
@@ -310,4 +314,116 @@ void InitializeTerrainResources(unsigned int &uiOutputId)
 	pTexturedCubeResourcesBuilder->Build(pTerrainResources);
 
 	ResourceMgr->AddResources(pTerrainResources, uiOutputId);
+}
+
+void InitializeBumpedCubeResources(unsigned int &uiOutputId)
+{
+	CResources *pTexturedCubeResources = new CResources();
+	CResourcesBuilder<BumpedVertex, WORD, BumpedBuffer> *pTexturedCubeResourcesBuilder = new CResourcesBuilder<BumpedVertex, WORD, BumpedBuffer>();
+
+	// Define cómo entrarán
+	// los datos al shader
+	D3D11_INPUT_ELEMENT_DESC a_d3dLayout[] =
+	{
+		{ "POSITION", 0, DXGI_FORMAT_R32G32B32_FLOAT, 0, 0, D3D11_INPUT_PER_VERTEX_DATA, 0 },
+		{ "TEXCOORD", 0, DXGI_FORMAT_R32G32_FLOAT, 0, D3D11_APPEND_ALIGNED_ELEMENT, D3D11_INPUT_PER_VERTEX_DATA, 0 },
+		{ "NORMAL", 0, DXGI_FORMAT_R32G32B32_FLOAT, 0, D3D11_APPEND_ALIGNED_ELEMENT, D3D11_INPUT_PER_VERTEX_DATA, 0 },
+		{ "TANGENT", 0, DXGI_FORMAT_R32G32B32_FLOAT, 0, D3D11_APPEND_ALIGNED_ELEMENT, D3D11_INPUT_PER_VERTEX_DATA, 0 },
+	};
+
+	// Create vertex buffer
+	BumpedVertex a_sVertices[] =
+	{
+		{ XMFLOAT3( -1.0f, 1.0f, -1.0f ), XMFLOAT2( 0.0f, 0.0f ), XMFLOAT3( 0.0f, 1.0f, 0.0f ) },
+		{ XMFLOAT3( 1.0f, 1.0f, -1.0f ), XMFLOAT2( 1.0f, 0.0f ), XMFLOAT3( 0.0f, 1.0f, 0.0f ) },
+		{ XMFLOAT3( 1.0f, 1.0f, 1.0f ), XMFLOAT2( 1.0f, 1.0f ), XMFLOAT3( 0.0f, 1.0f, 0.0f ) },
+		{ XMFLOAT3( -1.0f, 1.0f, 1.0f ), XMFLOAT2( 0.0f, 1.0f ), XMFLOAT3( 0.0f, 1.0f, 0.0f ) },
+
+		{ XMFLOAT3( -1.0f, -1.0f, -1.0f ), XMFLOAT2( 0.0f, 0.0f ), XMFLOAT3( 0.0f, -1.0f, 0.0f ) },
+		{ XMFLOAT3( 1.0f, -1.0f, -1.0f ), XMFLOAT2( 1.0f, 0.0f ), XMFLOAT3( 0.0f, -1.0f, 0.0f ) },
+		{ XMFLOAT3( 1.0f, -1.0f, 1.0f ), XMFLOAT2( 1.0f, 1.0f ), XMFLOAT3( 0.0f, -1.0f, 0.0f ) },
+		{ XMFLOAT3( -1.0f, -1.0f, 1.0f ), XMFLOAT2( 0.0f, 1.0f ), XMFLOAT3( 0.0f, -1.0f, 0.0f ) },
+
+		{ XMFLOAT3( -1.0f, -1.0f, 1.0f ), XMFLOAT2( 0.0f, 0.0f ), XMFLOAT3( -1.0f, 0.0f, 0.0f ) },
+		{ XMFLOAT3( -1.0f, -1.0f, -1.0f ), XMFLOAT2( 1.0f, 0.0f ), XMFLOAT3( -1.0f, 0.0f, 0.0f ) },
+		{ XMFLOAT3( -1.0f, 1.0f, -1.0f ), XMFLOAT2( 1.0f, 1.0f ), XMFLOAT3( -1.0f, 0.0f, 0.0f ) },
+		{ XMFLOAT3( -1.0f, 1.0f, 1.0f ), XMFLOAT2( 0.0f, 1.0f ), XMFLOAT3( -1.0f, 0.0f, 0.0f ) },
+
+		{ XMFLOAT3( 1.0f, -1.0f, 1.0f ), XMFLOAT2( 0.0f, 0.0f ), XMFLOAT3( 1.0f, 0.0f, 0.0f ) },
+		{ XMFLOAT3( 1.0f, -1.0f, -1.0f ), XMFLOAT2( 1.0f, 0.0f ), XMFLOAT3( 1.0f, 0.0f, 0.0f ) },
+		{ XMFLOAT3( 1.0f, 1.0f, -1.0f ), XMFLOAT2( 1.0f, 1.0f ), XMFLOAT3( 1.0f, 0.0f, 0.0f ) },
+		{ XMFLOAT3( 1.0f, 1.0f, 1.0f ), XMFLOAT2( 0.0f, 1.0f ), XMFLOAT3( 1.0f, 0.0f, 0.0f ) },
+			
+		{ XMFLOAT3( -1.0f, -1.0f, -1.0f ), XMFLOAT2( 0.0f, 0.0f ), XMFLOAT3( 0.0f, 0.0f, -1.0f ) },
+		{ XMFLOAT3( 1.0f, -1.0f, -1.0f ), XMFLOAT2( 1.0f, 0.0f ), XMFLOAT3( 0.0f, 0.0f, -1.0f ) },
+		{ XMFLOAT3( 1.0f, 1.0f, -1.0f ), XMFLOAT2( 1.0f, 1.0f ), XMFLOAT3( 0.0f, 0.0f, -1.0f ) },
+		{ XMFLOAT3( -1.0f, 1.0f, -1.0f ), XMFLOAT2( 0.0f, 1.0f ), XMFLOAT3( 0.0f, 0.0f, -1.0f ) },
+
+		{ XMFLOAT3( -1.0f, -1.0f, 1.0f ), XMFLOAT2( 0.0f, 0.0f ), XMFLOAT3( 0.0f, 0.0f, 1.0f ) },
+		{ XMFLOAT3( 1.0f, -1.0f, 1.0f ), XMFLOAT2( 1.0f, 0.0f ), XMFLOAT3( 0.0f, 0.0f, 1.0f ) },
+		{ XMFLOAT3( 1.0f, 1.0f, 1.0f ), XMFLOAT2( 1.0f, 1.0f ), XMFLOAT3( 0.0f, 0.0f, 1.0f ) },
+		{ XMFLOAT3( -1.0f, 1.0f, 1.0f ), XMFLOAT2( 0.0f, 1.0f ), XMFLOAT3( 0.0f, 0.0f, 1.0f ) },
+	};
+
+	int vertexCounter = 0;
+	BumpedVertex *vertexPtr = a_sVertices;
+
+	for(int i = 0; i < ARRAYSIZE(a_sVertices); i++)
+	{
+		if(vertexCounter < 3)
+		{
+			XMVECTOR v1 = XMLoadFloat3(&vertexPtr->pos);
+			XMVECTOR v2 = XMLoadFloat3(&(vertexPtr + 1)->pos);
+
+			XMStoreFloat3(&vertexPtr->tangent, XMVector3Normalize(v2 - v1));
+
+			vertexCounter++;
+		}
+		else
+		{
+			XMVECTOR v1 = XMLoadFloat3(&vertexPtr->pos);
+			XMVECTOR v2 = XMLoadFloat3(&(vertexPtr - 1)->pos);
+
+			XMStoreFloat3(&vertexPtr->tangent, XMVector3Normalize(v1 - v2));
+
+			vertexCounter = 0;
+		}
+
+		vertexPtr++;
+	}
+
+	// Creamos buffer de indices usando el mismo
+	//descriptor
+	WORD a_wIndices[] =
+	{
+		3,1,0,
+		2,1,3,
+
+		6,4,5,
+		7,4,6,
+
+		11,9,8,
+		10,9,11,
+
+		14,12,13,
+		15,12,14,
+
+		19,17,16,
+		18,17,19,
+
+		22,20,21,
+		23,20,22
+	};
+
+	pTexturedCubeResourcesBuilder->AddVertexShaderResource(L"BumpedShader.fx", "VS", "vs_4_0", a_d3dLayout, ARRAYSIZE(a_d3dLayout));
+	pTexturedCubeResourcesBuilder->AddPixelShaderResource(L"BumpedShader.fx", "PS", "ps_4_0");
+	pTexturedCubeResourcesBuilder->AddVertexBuffer(a_sVertices, sizeof(BumpedVertex) * ARRAYSIZE(a_sVertices));
+	pTexturedCubeResourcesBuilder->AddIndexBuffer(a_wIndices, sizeof(WORD) * ARRAYSIZE(a_wIndices));
+	pTexturedCubeResourcesBuilder->AddConstantBuffer(sizeof(BumpedBuffer));
+	pTexturedCubeResourcesBuilder->AddTexture(L"Textures\\p.gif");
+	pTexturedCubeResourcesBuilder->AddSampler(D3D11_FILTER_MIN_MAG_MIP_LINEAR, 
+		D3D11_TEXTURE_ADDRESS_WRAP, D3D11_TEXTURE_ADDRESS_WRAP, D3D11_TEXTURE_ADDRESS_WRAP, 0, D3D11_FLOAT32_MAX);
+	pTexturedCubeResourcesBuilder->Build(pTexturedCubeResources);
+
+	ResourceMgr->AddResources(pTexturedCubeResources, uiOutputId);
 }

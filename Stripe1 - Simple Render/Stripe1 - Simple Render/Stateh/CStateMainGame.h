@@ -9,6 +9,7 @@ class CStateMainGame : public CState
 private:
 	unsigned int uiTexturedCubeResourcesId;
 	unsigned int uiTerrainResourcesId;
+	unsigned int uiBumpedCubeResourcesId;
 
 	void InitializeResources();
 

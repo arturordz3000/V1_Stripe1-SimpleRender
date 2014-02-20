@@ -23,11 +23,28 @@ struct TerrainVertex
 	XMFLOAT3 normal;
 };
 
+struct BumpedVertex
+{
+	XMFLOAT3 pos;
+	XMFLOAT2 uv;
+	XMFLOAT3 normal;
+	XMFLOAT3 tangent;
+};
+
 struct MatrixBuffer
 {
 	XMMATRIX m_mxWorld;
 	XMMATRIX m_mxView;
 	XMMATRIX m_mxProjection;
+};
+
+struct BumpedBuffer
+{
+	XMMATRIX m_mxWorld;
+	XMMATRIX m_mxView;
+	XMMATRIX m_mxProjection;
+	XMFLOAT3 m_f3CameraPosition;
+	float padding;
 };
 
 struct TerrainConstantBuffer
