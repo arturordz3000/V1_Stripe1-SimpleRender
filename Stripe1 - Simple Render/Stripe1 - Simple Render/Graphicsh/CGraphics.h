@@ -36,6 +36,10 @@ private:
 	IDXGISwapChain *m_dxgSwapChain;	
 	ID3D11RenderTargetView *m_d3dRenderTarget;
 
+	ID3D11Texture2D* m_d3dDepthTexture;
+	ID3D11DepthStencilView* m_d3dDepthStencilView;
+	ID3D11DepthStencilState* m_d3dDepthStencilState;
+
 	// Tipo de driver de Direct3D
 	D3D_DRIVER_TYPE m_d3dDriverType;
 

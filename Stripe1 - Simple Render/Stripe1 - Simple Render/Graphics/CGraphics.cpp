@@ -176,7 +176,7 @@ bool CGraphics::InitGraphicsMode()
 		return false; // No se pudo crear el render target
 
 	// Ligamos el render target al pipe line de Direct3D
-	m_d3dDeviceContext->OMSetRenderTargets(1, &m_d3dRenderTarget, NULL);
+	//m_d3dDeviceContext->OMSetRenderTargets(1, &m_d3dRenderTarget, NULL);
 
 	// Creamos el viewport
 	D3D11_VIEWPORT d3dViewport;
@@ -188,6 +188,68 @@ bool CGraphics::InitGraphicsMode()
 	d3dViewport.TopLeftY = 0.0f;
 
 	m_d3dDeviceContext->RSSetViewports(1, &d3dViewport);
+
+	D3D11_TEXTURE2D_DESC depthTexDesc;
+	ZeroMemory(&depthTexDesc, sizeof(depthTexDesc));
+	depthTexDesc.Width = m_iWidth;
+	depthTexDesc.Height = m_iHeight;
+	depthTexDesc.MipLevels = 1;
+	depthTexDesc.ArraySize = 1;
+	depthTexDesc.Format = DXGI_FORMAT_D24_UNORM_S8_UINT;
+	depthTexDesc.SampleDesc.Count = 1;
+	depthTexDesc.SampleDesc.Quality = 0;
+	depthTexDesc.Usage = D3D11_USAGE_DEFAULT;
+	depthTexDesc.BindFlags = D3D11_BIND_DEPTH_STENCIL;
+	depthTexDesc.CPUAccessFlags = 0;
+	depthTexDesc.MiscFlags = 0;
+		
+	hResult = m_d3dDevice->CreateTexture2D(&depthTexDesc, NULL, &m_d3dDepthTexture);
+	if(FAILED(hResult))
+	{
+		MessageBox(0, L"Error", L"Error al crear la DepthTexture", MB_OK);
+		return false;
+	}
+
+	D3D11_DEPTH_STENCIL_VIEW_DESC descDSV;
+	ZeroMemory(&descDSV, sizeof(descDSV));
+	descDSV.Format = depthTexDesc.Format;
+	descDSV.ViewDimension = D3D11_DSV_DIMENSION_TEXTURE2D;
+	descDSV.Texture2D.MipSlice = 0;
+
+	hResult = m_d3dDevice->CreateDepthStencilView(m_d3dDepthTexture, &descDSV, &m_d3dDepthStencilView);
+	if(FAILED(hResult))
+	{
+		MessageBox(0, L"Error", L"Error al crear el depth stencil target view", MB_OK);
+		return false;
+	}
+
+	// Ligamos el render target al pipe line de Direct3D
+	m_d3dDeviceContext->OMSetRenderTargets(1, &m_d3dRenderTarget, m_d3dDepthStencilView);
+
+	D3D11_DEPTH_STENCIL_DESC descDSD;
+	ZeroMemory(&descDSD, sizeof(descDSD));
+	descDSD.DepthEnable = true;
+	descDSD.DepthWriteMask = D3D11_DEPTH_WRITE_MASK_ALL;
+	descDSD.DepthFunc = D3D11_COMPARISON_LESS;
+	descDSD.StencilEnable=true;
+	descDSD.StencilReadMask = 0xFF;
+	descDSD.StencilWriteMask = 0xFF;
+	descDSD.FrontFace.StencilFailOp = D3D11_STENCIL_OP_KEEP;
+	descDSD.FrontFace.StencilDepthFailOp = D3D11_STENCIL_OP_INCR;
+	descDSD.FrontFace.StencilPassOp = D3D11_STENCIL_OP_KEEP;
+	descDSD.FrontFace.StencilFunc = D3D11_COMPARISON_ALWAYS;
+	descDSD.BackFace.StencilFailOp = D3D11_STENCIL_OP_KEEP;
+	descDSD.BackFace.StencilDepthFailOp = D3D11_STENCIL_OP_DECR;
+	descDSD.BackFace.StencilPassOp = D3D11_STENCIL_OP_KEEP;
+	descDSD.BackFace.StencilFunc = D3D11_COMPARISON_ALWAYS;
+
+	hResult = m_d3dDevice->CreateDepthStencilState(&descDSD, &m_d3dDepthStencilState);
+	if(FAILED(hResult))
+	{
+		MessageBox(0, L"Error", L"Error al crear el depth stencil state", MB_OK);
+		return false;
+	}
+	m_d3dDeviceContext->OMSetDepthStencilState(m_d3dDepthStencilState, 1);
 
 	return true;
 }
@@ -201,7 +263,8 @@ void CGraphics::ClearScreen(const int &iR, const int &iG, const int &iB)
 
 	float a_fClearColor[] = { fUnitR, fUnitG, fUnitB, 255 };
 
-	m_d3dDeviceContext->ClearRenderTargetView(m_d3dRenderTarget, a_fClearColor);
+	m_d3dDeviceContext->ClearRenderTargetView(m_d3dRenderTarget, a_fClearColor);	
+	m_d3dDeviceContext->ClearDepthStencilView( m_d3dDepthStencilView, D3D11_CLEAR_DEPTH, 1.0f, 0 );
 }
 
 void CGraphics::SwapBuffers()

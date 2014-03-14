@@ -14,14 +14,14 @@ void CStateMainGame::OnLoad()
 	cCube->SetResourcesId(this->uiTexturedCubeResourcesId);
 	ActorMgr->LoadActor(cCube);*/
 
-	/*CActorTerrain *cTerrain = new CActorTerrain();
+	CActorTerrain *cTerrain = new CActorTerrain();
 	cTerrain->iIndexCount = indexCount;
 	cTerrain->SetResourcesId(this->uiTerrainResourcesId);
-	ActorMgr->LoadActor(cTerrain);*/
+	ActorMgr->LoadActor(cTerrain);
 
-	CActorBumpedCube *cCube = new CActorBumpedCube();
+	/*CActorBumpedCube *cCube = new CActorBumpedCube();
 	cCube->SetResourcesId(this->uiBumpedCubeResourcesId);
-	ActorMgr->LoadActor(cCube);
+	ActorMgr->LoadActor(cCube);*/
 }
 
 CStateMainGame::CStateMainGame() : CState()
@@ -36,6 +36,7 @@ CStateMainGame::~CStateMainGame()
 
 void CStateMainGame::DoFrame()
 {	
+	Camera->Update();
 	ActorMgr->UpdateActors();
 	ActorMgr->DrawActors();	
 	Input->ResetKeyboard();
@@ -44,8 +45,8 @@ void CStateMainGame::DoFrame()
 void CStateMainGame::InitializeResources()
 {
 	//InitializeTexturedCubeResources(this->uiTexturedCubeResourcesId);
-	//InitializeTerrainResources(this->uiTerrainResourcesId);
-	InitializeBumpedCubeResources(this->uiBumpedCubeResourcesId);
+	InitializeTerrainResources(this->uiTerrainResourcesId);
+	//InitializeBumpedCubeResources(this->uiBumpedCubeResourcesId);
 }
 
 void InitializeTexturedCubeResources(unsigned int &uiOutputId)

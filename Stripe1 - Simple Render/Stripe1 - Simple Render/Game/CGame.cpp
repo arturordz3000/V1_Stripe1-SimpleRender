@@ -61,7 +61,7 @@ int CGame::Run()
 	m_bIsRunning = true;
 
 	// Inicializamos la ventana
-	if(!Graphics->InitWindow(600, 600, true))
+	if(!Graphics->InitWindow(800, 600, true))
 		m_bIsRunning = false;
 	
 	m_pStateMachine->Start();
