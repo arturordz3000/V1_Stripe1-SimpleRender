@@ -5,6 +5,8 @@ void InitializeBumpedCubeResources(unsigned int &uiOutputId);
 void InitializeTerrainResources(unsigned int &uiOutputId);
 
 int indexCount = 0;
+TerrainVertex *terrainVertices;
+int deltaX, deltaY, verticesQty;
 
 void CStateMainGame::OnLoad()
 {
@@ -37,6 +39,21 @@ CStateMainGame::~CStateMainGame()
 void CStateMainGame::DoFrame()
 {	
 	Camera->Update();
+
+	XMVECTOR cameraPosition = Camera->GetPosition();
+	int vx = (int) ((cameraPosition.x + 256) / deltaX);
+	int vy = (int) ((cameraPosition.z + 256) / deltaY) * ((512));
+	int vertexIndex = (int)( vx + vy );
+		
+	if(vx > 0 && vx <= 512)
+	{
+		if(vertexIndex < verticesQty && vertexIndex >= 0)
+		{
+			float height = terrainVertices[vertexIndex].pos.y;
+			Camera->SetPositionY(height + 3);
+		}
+	}
+
 	ActorMgr->UpdateActors();
 	ActorMgr->DrawActors();	
 	Input->ResetKeyboard();
@@ -155,7 +172,7 @@ void InitializeTerrainResources(unsigned int &uiOutputId)
 	int ancho = 512, alto = 512;
 	int anchoTexTerr = 0, altoTexTerr = 0;
 	float anchof = 0, altof = 0;
-	float deltax = 0, deltay = 0;
+	//float deltax = 0, deltay = 0;
 	float tile = 10;
 	UINT* indices = NULL;
 	TerrainVertex* vertices = NULL;
@@ -163,43 +180,43 @@ void InitializeTerrainResources(unsigned int &uiOutputId)
 	ID3D11Resource* heightMap = NULL;
 
 	HRESULT resultado;
-		D3DX11_IMAGE_INFO texInfo;
-		resultado = D3DX11GetImageInfoFromFile(L"Textures\\GrandCanyon.png", NULL, &texInfo, NULL);
+	D3DX11_IMAGE_INFO texInfo;
+	resultado = D3DX11GetImageInfoFromFile(L"Textures\\GrandCanyon.png", NULL, &texInfo, NULL);
 
-		D3DX11_IMAGE_LOAD_INFO texDesc;
-		ZeroMemory(&texDesc, sizeof(texDesc));
-		texDesc.CpuAccessFlags = D3D11_CPU_ACCESS_READ;
-		texDesc.Usage = D3D11_USAGE_STAGING;
-		texDesc.pSrcInfo = &texInfo;
-		texDesc.Height = texInfo.Height;
-		texDesc.Width = texInfo.Width;
-		texDesc.Depth = texInfo.Depth;
-		texDesc.Format = texInfo.Format;
-		texDesc.Filter = D3DX11_FILTER_LINEAR;
-		texDesc.MipLevels = texInfo.MipLevels;
+	D3DX11_IMAGE_LOAD_INFO texDesc;
+	ZeroMemory(&texDesc, sizeof(texDesc));
+	texDesc.CpuAccessFlags = D3D11_CPU_ACCESS_READ;
+	texDesc.Usage = D3D11_USAGE_STAGING;
+	texDesc.pSrcInfo = &texInfo;
+	texDesc.Height = texInfo.Height;
+	texDesc.Width = texInfo.Width;
+	texDesc.Depth = texInfo.Depth;
+	texDesc.Format = texInfo.Format;
+	texDesc.Filter = D3DX11_FILTER_LINEAR;
+	texDesc.MipLevels = texInfo.MipLevels;
 
-		anchoTexTerr = (int)texInfo.Width;
-		altoTexTerr = (int)texInfo.Height;
-		alturaData = new BYTE*[altoTexTerr];
-		for( int i = 0 ; i < anchoTexTerr ; i++ )
-			alturaData[i] = new BYTE[anchoTexTerr];
+	anchoTexTerr = (int)texInfo.Width;
+	altoTexTerr = (int)texInfo.Height;
+	alturaData = new BYTE*[altoTexTerr];
+	for( int i = 0 ; i < anchoTexTerr ; i++ )
+		alturaData[i] = new BYTE[anchoTexTerr];
 
-		resultado = D3DX11CreateTextureFromFile(Graphics->GetDevice(), L"Textures\\GrandCanyon.png", &texDesc, NULL, &heightMap, NULL);
+	resultado = D3DX11CreateTextureFromFile(Graphics->GetDevice(), L"Textures\\GrandCanyon.png", &texDesc, NULL, &heightMap, NULL);
 
-		D3D11_MAPPED_SUBRESOURCE subResrc;
-		resultado = Graphics->GetDeviceContext()->Map(heightMap, 0, D3D11_MAP_READ, NULL, &subResrc);
-		BYTE *pixel = reinterpret_cast<BYTE*>(subResrc.pData);
+	D3D11_MAPPED_SUBRESOURCE subResrc;
+	resultado = Graphics->GetDeviceContext()->Map(heightMap, 0, D3D11_MAP_READ, NULL, &subResrc);
+	BYTE *pixel = reinterpret_cast<BYTE*>(subResrc.pData);
 
-		for(UINT x = 0; x < altoTexTerr; x++)
+	for(UINT x = 0; x < altoTexTerr; x++)
+	{
+		for(UINT y=0; y<anchoTexTerr; y++)
 		{
-			for(UINT y=0; y<anchoTexTerr; y++)
-			{
-				BYTE pPixel = pixel[(x * anchoTexTerr + y)*4];
-				alturaData[x][y] = pPixel/5;
-			}
+			BYTE pPixel = pixel[(x * anchoTexTerr + y)*4];
+			alturaData[x][y] = pPixel/5;
 		}
+	}
 		
-		Graphics->GetDeviceContext()->Unmap(heightMap, 0);
+	Graphics->GetDeviceContext()->Unmap(heightMap, 0);
 
 	anchof = (float)(ancho / 2.0f);
 	altof = (float)(alto / 2.0f);
@@ -213,6 +230,10 @@ void InitializeTerrainResources(unsigned int &uiOutputId)
 	// Se obtiene el espaciado entre cada vertice
 	float deltaAlto = alto / altoTexTerr;
 	float deltaAncho = ancho / anchoTexTerr;
+
+	deltaX = deltaAlto;
+	deltaY = deltaAncho;
+	verticesQty = cuentaVertex;
 
 	for(int x = 0; x < altoTexTerr; x++)
 	{
@@ -231,6 +252,8 @@ void InitializeTerrainResources(unsigned int &uiOutputId)
 			vertices[indiceArreglo].normal = XMFLOAT3(0.0f , 0.0f , 0.0f);
 		}
 	}
+
+	terrainVertices = vertices;
 
 	for(int i=0; i<altoTexTerr-1;i++)
 		{
