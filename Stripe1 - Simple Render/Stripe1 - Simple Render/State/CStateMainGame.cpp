@@ -231,8 +231,8 @@ void InitializeTerrainResources(unsigned int &uiOutputId)
 	float deltaAlto = alto / altoTexTerr;
 	float deltaAncho = ancho / anchoTexTerr;
 
-	deltaX = deltaAlto;
-	deltaY = deltaAncho;
+	deltaX = deltaAncho;
+	deltaY = deltaAlto;
 	verticesQty = cuentaVertex;
 
 	for(int x = 0; x < altoTexTerr; x++)
