@@ -81,6 +81,7 @@
     <ClCompile Include="Game\CActorBumpedCube.cpp" />
     <ClCompile Include="Game\CActorMgr.cpp" />
     <ClCompile Include="Game\CActorPlane.cpp" />
+    <ClCompile Include="Game\CActorSkyBox.cpp" />
     <ClCompile Include="Game\CActorTerrain.cpp" />
     <ClCompile Include="Game\CActorTexturedCube.cpp" />
     <ClCompile Include="Game\CGame.cpp" />
@@ -100,6 +101,7 @@
     <ClInclude Include="Gameh\CActorBumpedCube.h" />
     <ClInclude Include="Gameh\CActorMgr.h" />
     <ClInclude Include="Gameh\CActorPlane.h" />
+    <ClInclude Include="Gameh\CActorSkyBox.h" />
     <ClInclude Include="Gameh\CActorTerrain.h" />
     <ClInclude Include="Gameh\CActorTexturedCube.h" />
     <ClInclude Include="Gameh\CGame.h" />

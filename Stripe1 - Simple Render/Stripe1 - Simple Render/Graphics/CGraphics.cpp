@@ -251,6 +251,30 @@ bool CGraphics::InitGraphicsMode()
 	}
 	m_d3dDeviceContext->OMSetDepthStencilState(m_d3dDepthStencilState, 1);
 
+	D3D11_DEPTH_STENCIL_DESC descDDSD;
+	ZeroMemory(&descDDSD, sizeof(descDDSD));
+	descDDSD.DepthEnable = false;
+	descDDSD.DepthWriteMask = D3D11_DEPTH_WRITE_MASK_ALL;
+	descDDSD.DepthFunc = D3D11_COMPARISON_LESS;
+	descDDSD.StencilEnable=true;
+	descDDSD.StencilReadMask = 0xFF;
+	descDDSD.StencilWriteMask = 0xFF;
+	descDDSD.FrontFace.StencilFailOp = D3D11_STENCIL_OP_KEEP;
+	descDDSD.FrontFace.StencilDepthFailOp = D3D11_STENCIL_OP_INCR;
+	descDDSD.FrontFace.StencilPassOp = D3D11_STENCIL_OP_KEEP;
+	descDDSD.FrontFace.StencilFunc = D3D11_COMPARISON_ALWAYS;
+	descDDSD.BackFace.StencilFailOp = D3D11_STENCIL_OP_KEEP;
+	descDDSD.BackFace.StencilDepthFailOp = D3D11_STENCIL_OP_DECR;
+	descDDSD.BackFace.StencilPassOp = D3D11_STENCIL_OP_KEEP;
+	descDDSD.BackFace.StencilFunc = D3D11_COMPARISON_ALWAYS;
+
+	hResult = m_d3dDevice->CreateDepthStencilState(&descDDSD, &m_d3dDisabledDepthStencilState);
+	if(FAILED(hResult))
+	{
+		MessageBox(0, L"Error", L"Error al crear el depth stencil state", MB_OK);
+		return false;
+	}
+
 	return true;
 }
 
@@ -270,6 +294,16 @@ void CGraphics::ClearScreen(const int &iR, const int &iG, const int &iB)
 void CGraphics::SwapBuffers()
 {
 	m_dxgSwapChain->Present(0, 0);
+}
+
+void CGraphics::DisableDepth()
+{
+	m_d3dDeviceContext->OMSetDepthStencilState(m_d3dDisabledDepthStencilState, 1);
+}
+
+void CGraphics::EnableDepth()
+{
+	m_d3dDeviceContext->OMSetDepthStencilState(m_d3dDepthStencilState, 1);
 }
 
 HRESULT CGraphics::CompileShaderFromFile( WCHAR* szFileName, LPCSTR szEntryPoint, LPCSTR szShaderModel, ID3DBlob** ppBlobOut )

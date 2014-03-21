@@ -10,6 +10,8 @@ private:
 	unsigned int uiTexturedCubeResourcesId;
 	unsigned int uiTerrainResourcesId;
 	unsigned int uiBumpedCubeResourcesId;
+	unsigned int uiSkuBoxResourcesId;
+
 	ID3D11DepthStencilView *d3dDepthStencilView;
 
 	void InitializeResources();

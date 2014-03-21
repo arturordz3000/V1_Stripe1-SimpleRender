@@ -17,6 +17,7 @@
 #include "Gameh/CActorTexturedCube.h"
 #include "Gameh/CActorTerrain.h"
 #include "Gameh/CActorBumpedCube.h"
+#include "Gameh/CActorSkyBox.h"
 #include "Gameh/CActorMgr.h"
 #include "Managersh/CResourceMgr.h"
 #include "Graphics.h"

@@ -96,6 +96,9 @@
     <ClCompile Include="Game\CActorBumpedCube.cpp">
       <Filter>Source Files\Game</Filter>
     </ClCompile>
+    <ClCompile Include="Game\CActorSkyBox.cpp">
+      <Filter>Source Files\Game</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Gameh\CGame.h">
@@ -156,6 +159,9 @@
       <Filter>Header Files\Gameh</Filter>
     </ClInclude>
     <ClInclude Include="Gameh\CActorBumpedCube.h">
+      <Filter>Header Files\Gameh</Filter>
+    </ClInclude>
+    <ClInclude Include="Gameh\CActorSkyBox.h">
       <Filter>Header Files\Gameh</Filter>
     </ClInclude>
   </ItemGroup>

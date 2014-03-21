@@ -14,6 +14,8 @@ public:
 	bool InitGraphicsMode();
 	void ClearScreen(const int &iR, const int &iG, const int &iB);
 	void SwapBuffers();
+	void DisableDepth();
+	void EnableDepth();
 	HRESULT CompileShaderFromFile( WCHAR* szFileName, LPCSTR szEntryPoint, LPCSTR szShaderModel, ID3DBlob** ppBlobOut );
 	int GetWidth() { return m_iWidth; }
 	int GetHeight() { return m_iHeight; }
@@ -39,6 +41,7 @@ private:
 	ID3D11Texture2D* m_d3dDepthTexture;
 	ID3D11DepthStencilView* m_d3dDepthStencilView;
 	ID3D11DepthStencilState* m_d3dDepthStencilState;
+	ID3D11DepthStencilState* m_d3dDisabledDepthStencilState;
 
 	// Tipo de driver de Direct3D
 	D3D_DRIVER_TYPE m_d3dDriverType;
