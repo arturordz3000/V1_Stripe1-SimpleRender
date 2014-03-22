@@ -472,35 +472,35 @@ void InitializeSkyBoxResources(unsigned int &uiOutputId)
 	// Create vertex buffer
 	TexturedVertex a_sVertices[] =
 	{
-		{ XMFLOAT3( 50.0f, -50.0f, 50.0f ), XMFLOAT2( 1,1 ) },
-		{ XMFLOAT3( -50.0f, -50.0f, 50.0f ), XMFLOAT2( 0,1 ) },
-		{ XMFLOAT3( 50.0f, 50.0f, 50.0f ), XMFLOAT2( 1,0 ) },
+		{ XMFLOAT3( 50.0f, -50.0f, 50.0f ), XMFLOAT2( 0,0 ) },
+		{ XMFLOAT3( -50.0f, -50.0f, 50.0f ), XMFLOAT2( 0,0 ) },
+		{ XMFLOAT3( 50.0f, 50.0f, 50.0f ), XMFLOAT2( 0,0 ) },
 		{ XMFLOAT3( -50.0f, 50.0f, 50.0f ), XMFLOAT2( 0,0 ) },
 
-		{ XMFLOAT3( 50.0f, -50.0f, 50.0f ), XMFLOAT2( 0,1 ) },
+		{ XMFLOAT3( 50.0f, -50.0f, 50.0f ), XMFLOAT2( 1,1 ) },
 		{ XMFLOAT3( 50.0f, -50.0f, -50.0f ), XMFLOAT2( 1,1 ) },
-		{ XMFLOAT3( 50.0f, 50.0f, 50.0f ), XMFLOAT2( 0,0 ) },
-		{ XMFLOAT3( 50.0f, 50.0f, -50.0f ), XMFLOAT2( 1,0 ) },
+		{ XMFLOAT3( 50.0f, 50.0f, 50.0f ), XMFLOAT2( 1,1 ) },
+		{ XMFLOAT3( 50.0f, 50.0f, -50.0f ), XMFLOAT2( 1,1 ) },
 
-		{ XMFLOAT3( 50.0f, -50.0f, -50.0f ), XMFLOAT2( 0,1 ) },
-		{ XMFLOAT3( -50.0f, -50.0f, -50.0f ), XMFLOAT2( 1,1 ) },
-		{ XMFLOAT3( 50.0f, 50.0f, -50.0f ), XMFLOAT2( 0,0 ) },
+		{ XMFLOAT3( 50.0f, -50.0f, -50.0f ), XMFLOAT2( 1,0 ) },
+		{ XMFLOAT3( -50.0f, -50.0f, -50.0f ), XMFLOAT2( 1,0 ) },
+		{ XMFLOAT3( 50.0f, 50.0f, -50.0f ), XMFLOAT2( 1,0 ) },
 		{ XMFLOAT3( -50.0f, 50.0f, -50.0f ), XMFLOAT2( 1,0 ) },
 
-		{ XMFLOAT3( -50.0f, -50.0f, 50.0f ), XMFLOAT2( 1,1 )},
+		{ XMFLOAT3( -50.0f, -50.0f, 50.0f ), XMFLOAT2( 0,1 )},
 		{ XMFLOAT3( -50.0f, -50.0f, -50.0f ), XMFLOAT2( 0,1 ) },
-		{ XMFLOAT3( -50.0f, 50.0f, 50.0f ), XMFLOAT2( 1,0 ) },
-		{ XMFLOAT3( -50.0f, 50.0f, -50.0f ), XMFLOAT2( 0,0 ) },
+		{ XMFLOAT3( -50.0f, 50.0f, 50.0f ), XMFLOAT2( 0,1 ) },
+		{ XMFLOAT3( -50.0f, 50.0f, -50.0f ), XMFLOAT2( 0,1 ) },
 			
-		{ XMFLOAT3( 50.0f, 50.0f, 50.0f ), XMFLOAT2( 0,0 ) },
-		{ XMFLOAT3( -50.0f, 50.0f, 50.0f ), XMFLOAT2( 1,0 ) },
-		{ XMFLOAT3(50.0f, 50.0f, -50.0f ), XMFLOAT2( 0,1 ) },
-		{ XMFLOAT3( -50.0f, 50.0f, -50.0f ), XMFLOAT2(1,1 ) },
+		{ XMFLOAT3( 50.0f, 50.0f, 50.0f ), XMFLOAT2( 1,0 ) },
+		{ XMFLOAT3( -50.0f, 50.0f, 50.0f ), XMFLOAT2( 0,0 ) },
+		{ XMFLOAT3(50.0f, 50.0f, -50.0f ), XMFLOAT2( 1,0 ) },
+		{ XMFLOAT3( -50.0f, 50.0f, -50.0f ), XMFLOAT2(0,0 ) },
 
 		{ XMFLOAT3( 50.0f, -50.0f, 50.0f ), XMFLOAT2( 0,1 ) },
-		{ XMFLOAT3( -50.0f, -50.0f, 50.0f ), XMFLOAT2( 1,1 ) },
-		{ XMFLOAT3( 50.0f, -50.0f, -50.0f ), XMFLOAT2( 0,0 ) },
-		{ XMFLOAT3( -50.0f, -50.0f, -50.0f ), XMFLOAT2( 1,0 )},
+		{ XMFLOAT3( -50.0f, -50.0f, 50.0f ), XMFLOAT2( 0,0 ) },
+		{ XMFLOAT3( 50.0f, -50.0f, -50.0f ), XMFLOAT2( 0,1 ) },
+		{ XMFLOAT3( -50.0f, -50.0f, -50.0f ), XMFLOAT2( 0,0 )},
 	};
 
 	// Creamos buffer de indices usando el mismo

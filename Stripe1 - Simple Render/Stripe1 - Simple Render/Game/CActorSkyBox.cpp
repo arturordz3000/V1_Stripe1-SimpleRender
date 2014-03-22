@@ -18,7 +18,7 @@ CActorSkyBox::~CActorSkyBox()
 
 void CActorSkyBox::Update()
 {
-	this->mxWorld = XMMatrixTranslation(Camera->GetPosition().x, Camera->GetPosition().y, Camera->GetPosition().z);
+	
 }
 
 void CActorSkyBox::Draw()
